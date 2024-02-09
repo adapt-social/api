@@ -1,0 +1,141 @@
+{
+  "version": "6.0",
+  "nxVersion": "18.0.2",
+  "deps": {},
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "adapt": [
+        {
+          "file": "adapt/.eslintignore",
+          "hash": "7663861978715868291"
+        },
+        {
+          "file": "adapt/.eslintrc.json",
+          "hash": "10297793174850582735"
+        },
+        {
+          "file": "adapt/.github/workflows/ci.yml",
+          "hash": "5091666341124044080"
+        },
+        {
+          "file": "adapt/.gitignore",
+          "hash": "16877376182141465221"
+        },
+        {
+          "file": "adapt/.prettierignore",
+          "hash": "16448050467312557263"
+        },
+        {
+          "file": "adapt/.prettierrc",
+          "hash": "16267754514737964994"
+        },
+        {
+          "file": "adapt/.vscode/extensions.json",
+          "hash": "4934098906304722861"
+        },
+        {
+          "file": "adapt/Dockerfile",
+          "hash": "6462942252319975721"
+        },
+        {
+          "file": "adapt/README.md",
+          "hash": "14805253864992657809"
+        },
+        {
+          "file": "adapt/jest.config.ts",
+          "hash": "18217071846307390514"
+        },
+        {
+          "file": "adapt/jest.preset.js",
+          "hash": "9430166341120122740"
+        },
+        {
+          "file": "adapt/nx.json",
+          "hash": "14245870112556568251"
+        },
+        {
+          "file": "adapt/package-lock.json",
+          "hash": "9362615861487667906"
+        },
+        {
+          "file": "adapt/package.json",
+          "hash": "3021788311292213624"
+        },
+        {
+          "file": "adapt/project.json",
+          "hash": "12192289700666865765"
+        },
+        {
+          "file": "adapt/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "adapt/src/main.ts",
+          "hash": "14556257724034575404"
+        },
+        {
+          "file": "adapt/tsconfig.app.json",
+          "hash": "11653504435993440299"
+        },
+        {
+          "file": "adapt/tsconfig.json",
+          "hash": "10182701031779797300"
+        },
+        {
+          "file": "adapt/tsconfig.spec.json",
+          "hash": "713132797739782072"
+        }
+      ],
+      "e2e": [
+        {
+          "file": "adapt/e2e/.eslintrc.json",
+          "hash": "8051240356037213136"
+        },
+        {
+          "file": "adapt/e2e/jest.config.ts",
+          "hash": "16167000130134516478"
+        },
+        {
+          "file": "adapt/e2e/project.json",
+          "hash": "2906734465341799321"
+        },
+        {
+          "file": "adapt/e2e/src/server/server.spec.ts",
+          "hash": "4579662685003779048"
+        },
+        {
+          "file": "adapt/e2e/src/support/global-setup.ts",
+          "hash": "2568409276037275290"
+        },
+        {
+          "file": "adapt/e2e/src/support/global-teardown.ts",
+          "hash": "5275447082211835490"
+        },
+        {
+          "file": "adapt/e2e/src/support/test-setup.ts",
+          "hash": "10984585515912236441"
+        },
+        {
+          "file": "adapt/e2e/tsconfig.json",
+          "hash": "8499526883202715106"
+        },
+        {
+          "file": "adapt/e2e/tsconfig.spec.json",
+          "hash": "14226830188665428950"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".gitignore",
+        "hash": "3009140142791806673"
+      },
+      {
+        "file": "README.md",
+        "hash": "15256878555492848667"
+      }
+    ]
+  }
+}

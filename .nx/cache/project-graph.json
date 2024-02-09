@@ -1,0 +1,123 @@
+{
+  "nodes": {
+    "e2e": {
+      "name": "e2e",
+      "type": "e2e",
+      "data": {
+        "root": "adapt/e2e",
+        "name": "e2e",
+        "$schema": "../node_modules/nx/schemas/project-schema.json",
+        "implicitDependencies": [
+          "adapt"
+        ],
+        "projectType": "application",
+        "targets": {
+          "e2e": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{e2eProjectRoot}"
+            ],
+            "options": {
+              "jestConfig": "e2e/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          }
+        },
+        "tags": []
+      }
+    },
+    "adapt": {
+      "name": "adapt",
+      "type": "app",
+      "data": {
+        "root": "adapt",
+        "includedScripts": [],
+        "name": "adapt",
+        "targets": {
+          "build": {
+            "executor": "@nx/esbuild:esbuild",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "platform": "node",
+              "outputPath": "dist/adapt",
+              "format": [
+                "cjs"
+              ],
+              "bundle": false,
+              "main": "src/main.ts",
+              "tsConfig": "tsconfig.app.json",
+              "assets": [
+                "src/assets"
+              ],
+              "generatePackageJson": true,
+              "esbuildOptions": {
+                "sourcemap": true,
+                "outExtension": {
+                  ".js": ".js"
+                }
+              }
+            },
+            "configurations": {
+              "development": {},
+              "production": {
+                "generateLockfile": true,
+                "esbuildOptions": {
+                  "sourcemap": false,
+                  "outExtension": {
+                    ".js": ".js"
+                  }
+                }
+              }
+            }
+          },
+          "serve": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "adapt:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "adapt:build:development"
+              },
+              "production": {
+                "buildTarget": "adapt:build:production"
+              }
+            }
+          },
+          "docker-build": {
+            "dependsOn": [
+              "build"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "docker build -f Dockerfile . -t adapt"
+            },
+            "configurations": {}
+          }
+        },
+        "$schema": "node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "src",
+        "projectType": "application",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "e2e": [
+      {
+        "source": "e2e",
+        "target": "adapt",
+        "type": "implicit"
+      }
+    ],
+    "adapt": []
+  },
+  "version": "6.0"
+}
