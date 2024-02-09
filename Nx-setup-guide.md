@@ -5,6 +5,13 @@
 - **Automate Dependency Updates**: if you leverage Nx plugins you gain additional features such as [code generation](https://nx.dev/features/generate-code) and tools to [automatically upgrade](https://nx.dev/features/automate-updating-dependencies) your codebase and dependencies.
 - **Enforce Module Boundaries**
 
+The **Nx** package provides fundamental technology-agnostic capabilities such as: [workspace analysis](https://nx.dev/features/explore-graph), [task running](https://nx.dev/features/run-tasks), [caching](https://nx.dev/features/cache-task-results), [distribution](https://nx.dev/ci/features/distribute-task-execution), [code generation](https://nx.dev/features/generate-code) and [automated code migrations](https://nx.dev/features/automate-updating-dependencies).
+
+**Plugins** are NPM packages that build on top of the fundamental capabilities provided by the Nx package. Nx plugins contain [code generators](https://nx.dev/features/generate-code), [executors](https://nx.dev/concepts/executors-and-configurations) and automated code migrations
+for keeping your tools up to date. Plugins are usually
+technology specific. For instance, `@nx/react` adds support for building React apps and libs, `@nx/cypress`
+adds e2e testing capabilities with Cypress.
+
 # How to use Nx in your projects
 
 ## Installation
