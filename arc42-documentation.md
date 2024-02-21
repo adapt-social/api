@@ -97,7 +97,7 @@ Generate jokes by type: general and programming jokes.
 
 The client calls our endpoint and chooses which API to use
 
-## Technical Context {#\_technical_context}
+## Technical Context
 
 //Add missing diagram when repository exists
 
@@ -107,7 +107,7 @@ Any client that speaks HTTP can use our system. (e.g. webclient, mobileclient, c
 **Translation (external system: Google)**
 Uses Cloud Translation API by Google to translate text posts by users.
 
-# Solution Strategy {#section-solution-strategy}
+# Solution Strategy
 
 | Quality Goals                                              | Scenario                                 | Solution / Architectural Approach                                                                         |
 | :--------------------------------------------------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
@@ -134,7 +134,7 @@ Uses Cloud Translation API by Google to translate text posts by users.
 | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | MonoRepo | We thought of using monorepo to get more familiar with it. Using a monorepo for a single project might introduce complexities that are unnecessary for smaller projects, but we will use a monorepo tool for learning and introducing more constraints that can help us be more consistent and write better code. | Agreed to use monorepo | Agreed to use Nx | Benefits of using a monorepo tool: Local computation caching: Fast Local task orchestration: Fast Distributed computation caching: Fast Distributed task execution: Fast Transparent remote execution: Fast Detecting affected projects/packages: Fast Workspace analysis: Understandable Dependency graph visualization: Understandable Code sharing: Manageable Consistent tooling: Manageable Code generation: Manageable Project constraints and visibility |
 
-# Glossary {#section-glossary}
+# Glossary
 
 | Term        | Definition        |
 | :---------- | :---------------- |
