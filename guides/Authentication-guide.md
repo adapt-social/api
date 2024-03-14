@@ -93,5 +93,6 @@ Documentation: https://www.rfc-editor.org/rfc/rfc6749
     - Create it yourself
 
     Example:
-    ![](./images/JWTSecret.png)
-    ![](./images/SecretKeyExample.png)
+
+![jwt secret](./images/JWTSecret.png)
+![secret key example](./images/SecretKeyExample.png)
