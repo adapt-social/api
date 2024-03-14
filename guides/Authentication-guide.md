@@ -1,15 +1,6 @@
-#Authentication and JWTokens
+# Authentication and JWTokens
 
-https://jwt.io/introduction
-
-
-https://medium.com/@vndpal/how-to-implement-jwt-token-authentication-in-net-core-6-ab7f48470f5c
-
-
-https://auth0.com/docs/secure/tokens/access-tokens
-
-
-
+Documentation: https://www.rfc-editor.org/rfc/rfc6749
 
 ### What are tokens and what do we need for them?
     - way for securely transmitting information between parties as a JSON object
@@ -18,29 +9,6 @@ https://auth0.com/docs/secure/tokens/access-tokens
 
 ### What is an OAuth token?
     - OAuth 2.0 uses Access Tokens. An Access Token is a piece of data that represents the authorization to access resources on behalf of the end-user. OAuth 2.0 doesn't define a specific format for Access Tokens. However, in some contexts, the JSON Web Token (JWT) format is often used.
-
-
-### How do we add it to our project?
-    - Create a .NET Core 6 Web API Project
-    - Install Required NuGet Packages
-    - Configure JWT Authentication
-        - In appsettings.json add JWT token details.
-        - In your Program.cs file, configure JWT authentication
-    - Generate JWT Tokens
-    - Protect API Endpoints
-
-
-### Which alternatives are out there for us?
-    - 4 main schemes:
-        - Local Authentication
-        - Token Based Authentication
-        - API Key Based Authentication
-        - OAuth (Open Authorization)
-
-
-### How does JWT works?
-    - Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
-
 
 ### What info is in that token?
     - In its compact form, JSON Web Tokens consist of three parts separated by dots, which are: Header, payload, signature
@@ -68,27 +36,62 @@ https://auth0.com/docs/secure/tokens/access-tokens
             base64UrlEncode(payload),
             secret)
 
-### What is access token/refresh token?
+### What is access token?
+    - Part of the oAuth2 flow
+    - That we give to a client once they ask to call a ressource on behalf of the user
+    - To get it the user as to authenticate themselves
+    - Client doesn’t have to know whats inside the access token
+        - Only that its valid and can be send to the resource to call the API succesfully
+    - Resource is able to look inside of that access token
+        - FIgure out who the user is and execute whatever action they were asked to do on the users behalf
+    - They only last for around one hour!! But can also be revoked earlier (example: logout)
+    - Acess tokens are only good for a single ressource
 
-- **Access token**
-    - used in token-based authentication to allow an application to access an API
-    - application receives an access token after a user successfully authenticates and authorizes
-    - then passes the access token as a credential when it calls the target API
-    - passed token informs the API that the bearer of the token has been authorized to access the API
-- **JWT access token**
-    - contain information about an entity in the form of claims
-    - are self-contained therefore it is not necessary for the recipient to call a server to validate the token
-- **Refresh token**
-    - A refresh token is a special token that is used to obtain more access tokens
-    - request a refresh token alongside the access and/or ID tokens
-    - part of a user's initial authentication and authorization flow
-    - persistent refresh tokens help improve a user's authentication experience
-    - the same refresh token is returned each time the client makes a request to exchange a refresh token for a new access token until the      
-      refresh token lifetime expires
-    - browser-based applications have a higher risk of a refresh token being compromised when a persistent refresh token is used
-    - with single-page applications (SPAs), long-lived refresh tokens aren't suitable,
+### What is refresh token?
+    - Also part of the oAuth2 flow
+    - Given to the client
+    - Client uses them to refresh or get new copies of the ID token and access tokens once those expired
+    - They can last effectively forever!!
+    - You can use them to get multiple access tokens using a single authentication
+    - Function similar to a session token
+    - Saved in the user account of the application for the next time the application needs access an API on bhealf of the user
+    - Example: User logged into app → closes it and reopenes next day → refresh token makes it possible to still access your data without login in again
 
-### Where is it stored?
+![token behavior](./images/RefreshAcessTokens.png "How access and refresh tokens work")
 
-- The access token is stored in your browser
-- To keep them secure, you should always store JWTs inside an HttpOnly cookie
+### How to create them in express.js
+
+![generate token](./images/GenerateToken1.png)
+![generate token](./images/GenerateToken2.png)
+![generate token](./images/GenerateToken3.png)
+![generate token](./images/AuthenticateToken1.png)
+![generate token](./images/AuthenticateToken2.png)
+![generate token](./images/AuthenticateToken3.png)
+![generate token](./images/ClientSideToken.png)
+
+
+### Access token response
+
+![acess token response](./images/AcessTResponse.png)
+
+### How to check if token is still valid?
+
+    - Upon receiving a valid access_token, expires_in value, refresh_token, etc., clients can process this by storing an expiration time and checking it on each request
+    - Other method of handling token refresh is to manually refresh after receiving an invalid token authorization error. This can be done with the previous approach or by itself.
+    - If your refresh token has also expired, you will need to go through the authorization process again.
+        - The OAuth 2.0 spec doesn't define refresh token expiration or how to handle it, however, a number of APIs will return a refresh_token_expires_in property when the refresh token does expire
+
+    Following steps for expiration time check:
+    - convert expires_in to an expire time
+    - store the expire time
+    - on each resource request, check the current time against the expire time and make a token refresh request before the resource request if the access_token has expired
+
+
+### What kind of secret key do we need to provide?
+    - First of all you shouldn't use a third party to generate your secret key
+    - Use the standard HSA 256 encryption for the signature, the secret should at least be 32 characters long, but the longer the better
+    - Create it yourself
+
+    Example:
+    ![](./images/JWTSecret.png)
+    ![](./images/SecretKeyExample.png)
