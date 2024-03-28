@@ -10,15 +10,14 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 
 WORKDIR /app
+COPY ./ /app
 
 RUN addgroup --system adapt && \
           adduser --system -G adapt adapt
+RUN npm install -g pnpm
+RUN pnpm install
+RUN pnpm run build
 
-COPY dist/adapt adapt
 RUN chown -R adapt:adapt .
 
-# You can remove this install step if you build with `--bundle` option.
-# The bundled output will include external dependencies.
-RUN npm --prefix adapt --omit=dev -f install
-
-CMD [ "node", "adapt" ]
+CMD [ "node", "dist/adapt/main.js" ]
