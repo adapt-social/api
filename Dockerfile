@@ -16,6 +16,7 @@ RUN addgroup --system adapt && \
           adduser --system -G adapt adapt
 RUN npm install -g pnpm
 RUN pnpm install
+RUN pnpm run test
 RUN pnpm run build
 
 RUN chown -R adapt:adapt .
