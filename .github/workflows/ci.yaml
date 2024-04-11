@@ -43,8 +43,8 @@ jobs:
     - run: pnpm test
     - run: docker build -t ghcr.io/adapt/api/api_docker_image_name .
     - run: docker images
-    - run: docker pull ghcr.io/adapt/api/api_docker_image_name
     - run: docker push ghcr.io/adapt/api/api_docker_image_name:latest
+    - run: docker pull ghcr.io/adapt/api/api_docker_image_name
 
 
         
