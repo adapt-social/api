@@ -32,5 +32,7 @@ jobs:
     - run: pnpm install --frozen-lockfile
     - run: pnpm build
     - run: pnpm test
+    - run: docker rmi ghcr.io/adapt/api/api_docker_image_name:latest
     - run: docker build -t api_docker_image_name .
+    - run: docker pull ghcr.io/adapt/api/api_docker_image_name
     - run: docker push ghcr.io/adapt/api/api_docker_image_name:latest
