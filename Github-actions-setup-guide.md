@@ -72,7 +72,6 @@ Allows us to use pnpm in the pipeline as we do in our project.
 GitHub Action to login against a Docker registry. Since we want to use Docker in the pipeline we need to login first. [(action used)](https://github.com/docker/login-action)
 This actions is called with the variables for login: registry to log into, username, password. Here we use the [`github` context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context) to access the username of the latest user who triggered the workflow.
 
-
 ```yaml
     - uses: docker/login-action@v2
       with:
@@ -112,6 +111,7 @@ Here we use the [`github` context](https://docs.github.com/en/actions/learn-gith
         docker build . -t ghcr.io/${{ github.repository_owner }}/api_docker_image_name:latest
         docker push ghcr.io/${{ github.repository_owner }}/api_docker_image_name:latest
 ```
+After this run you will see the image URL in the  job steps of the pipeline. You can pass this URL to the platform where you want to deploy your project, the platform will `pull` the image from the registry. You have to login to the GitHub registry on this platform with your GitHub username and a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
         
 
 ### Additional resources
