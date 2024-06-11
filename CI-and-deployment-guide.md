@@ -107,9 +107,9 @@ Here it is used to specify which Node version to use and cache pnpm dependencies
 4. Run docker build and push the created image to the github registry.
 Here we use the [`github` context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context) again to access `repository_owner` variable to be able to push the image to the correct URL in the registry. When the image is created, the old one with the same name is deleted automatically and replaced.
 ```yaml
-    - run: |
-        docker build . -t ghcr.io/${{ github.repository_owner }}/api_docker_image_name:latest
-        docker push ghcr.io/${{ github.repository_owner }}/api_docker_image_name:latest
+- run: |
+  docker build . -t ghcr.io/${{ github.repository_owner }}/api_docker_image_name:latest
+  docker push ghcr.io/${{ github.repository_owner }}/api_docker_image_name:latest
 ```
 After this run you will see the image URL in the  job steps of the pipeline. You can pass this URL to the platform where you want to deploy your project, the platform will `pull` the image from the registry. You have to login to the GitHub registry on this platform with your GitHub username and a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
         
