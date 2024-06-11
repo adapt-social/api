@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions: # add permissions to be able to authenticate in gihub container registry
+permissions: # add permissions to GITHUB_TOKEN to be able to authenticate in github container registry
   contents: read
   packages: write
 
